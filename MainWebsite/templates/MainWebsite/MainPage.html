@@ -1,16 +1,18 @@
 <!2014 Oxi Studios>
 
-<!DOCTYPE html>
 <html>
 <head>
 	<meta cahrset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 	<title>GolfHub - Main</title>
-	<link rel="stylesheet" href="CSS/MainScreenStyle.css">
+
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS/MainScreenStyle.css' %}">
 </head>
 
 <body>
 <section class="tabcontainer">
+
 		<div class="">
 			<h1>
 			<a href="MainPage.html"><input type="submit" name="commit" value=" Home "></a>
@@ -21,6 +23,7 @@
 			<a href="NextPage.html"><input type="submit" name="commit" value=" My Profile "></a>
 			</h1>
 		</div>
+
 	</section>
 	<section class="container">
 		<div class="mainpage">
