@@ -36,8 +36,3 @@ def signup_page(request):
 
     else:
         return render(request, "Users/SignupScreen.html")
-
-'''This method is used to load the user data for the main page
-and then return the main page with that data parsed in'''
-def main_page_load():
-    pass
