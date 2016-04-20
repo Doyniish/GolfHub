@@ -7,20 +7,18 @@
 	<title>GolfHub - Main</title>
 
 	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'CSS/MainScreenStyle.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'MainWebsite/css/MainScreenStyle.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'MainWebsite/css/bootstrap.css' %}">
 </head>
 
 <body>
-<section class="tabcontainer">
+	<section class="tabcontainer">
 
 		<div class="">
 			<h1>
-			<a href="MainPage.html"><input type="submit" name="commit" value=" Home "></a>
-			<a href="LoginScreen.html"><input type="submit" name="commit" value=" Log In " ></a>
-			<a href="SignUpScreen.html"><input type="submit" name="commit" value=" Sign Up "></a>
-			<a href="NextPage.html"><input type="submit" name="commit" value="Course Map"></a>
-			<a href="NextPage.html"><input type="submit" name="commit" value=" Tee Times "></a>
-			<a href="NextPage.html"><input type="submit" name="commit" value=" My Profile "></a>
+				<a href="NextPage.html"><input type="submit" name="commit" value="Course Map"></a>
+				<a href="NextPage.html"><input type="submit" name="commit" value=" Tee Times "></a>
+				<a href="NextPage.html"><input type="submit" name="commit" value=" My Profile "></a>
 			</h1>
 		</div>
 
@@ -29,7 +27,14 @@
 		<div class="mainpage">
 			<h1>Welcome to GolfHub!</h1>	
 			<h2>
-			This is where we can put content. Right now i'm not really sure what to put in here other than updates, what's new, new posts from us, etc.
+				<div class="row">
+					<div class="col-xs-6">
+						<p>test</p>
+					</div>
+					<div class="col-xs-6">
+						<p>test</p>
+					</div>
+				</div>
 			</h2>
 		</div>
 	</section>
