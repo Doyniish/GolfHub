@@ -288,22 +288,22 @@ input[type=submit]:active {
 /**************************/
 
 .group-list-item {
-    height: inherit;
-    border: 1px solid grey;
     margin-left: 5px;
     margin-right: 5px;
 }
 
 .list-view {
-    height: 20vh;
+    height: 30vh;
     overflow: auto;
 }
 
 .group-name-holder {
+    font-weight: bold;
+    font-size: 20pt;
     padding-left: 3vw;
     padding-top: .5vw;
     padding-bottom: .5vw;
-
+    background: #7d98ab;
     border-bottom: 1px solid grey;
 
 }
@@ -316,6 +316,7 @@ input[type=submit]:active {
     padding-top: .5vw;
     padding-bottom: .5vw;
 
+    font-size: 20pt;
     text-align: center;
 
     border-right: 1px solid grey;
