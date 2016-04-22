@@ -295,6 +295,7 @@ input[type=submit]:active {
 .list-view {
     height: 30vh;
     overflow: auto;
+    border: 1px solid grey;
 }
 
 .group-name-holder {
@@ -322,4 +323,33 @@ input[type=submit]:active {
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
     border-left: 1px solid grey;
+}
+
+/* Add Group Area CSS */
+
+.add-group-container {
+    margin: 0 !important;
+    background: #def;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+
+}
+
+#new-group-txt, #group-add {
+    font-size: 15pt;
+    font-weight: bold;
+
+    color: rgba(10,60,150, 0.8);
+    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+}
+
+#new-group-txt {
+    line-height: 300%;
+}
+
+#group-add {
+    text-align: center;
+    border-left: 1px solid grey;
+    font-size: 30pt;
 }
