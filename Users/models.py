@@ -14,6 +14,6 @@ class Groups(models.Model):
 class UserData(models.Model):
     user = models.OneToOneField(User)
     # every group that the user is apart of (comma separated)
-    golf_groups = models.CharField(max_length=4000)
+    groups = models.CharField(max_length=4000)
 
 

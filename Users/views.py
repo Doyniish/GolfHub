@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -67,4 +68,20 @@ def create_new_group(request):
     for member in members:
         members_str += member + ","
 
-    group = Groups(name=name, members=members_str)
+    # create our group
+    group = Groups(name=name, members=members_str, owner=request.user.email)
+    # save
+    group.save()
+
+    # TODO: check for errors
+    res = {'success': True}
+
+    #update current user's group list
+    userdata = UserData.objects.get(user=request.user)
+    user_group_list = userdata.groups
+    user_group_list += name + ","
+
+    userdata.save()
+
+    # update the user with a success
+    return JsonResponse(res)
