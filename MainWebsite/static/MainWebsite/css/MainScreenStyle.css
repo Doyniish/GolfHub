@@ -145,12 +145,12 @@ body {
 .mainpage h1 {
   margin: -20px -20px 21px;
   line-height: 40px;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
-  color: #555;
+  /* color: rgba(81,117,141, 0.8); */
   text-align: center;
-  text-shadow: 0 1px white;
-  background: #f3f3f3;
+  text-shadow: 0 1px #5e8197;
+  background: #7d98ab;
   border-bottom: 1px solid #cfcfcf;
   border-radius: 3px 3px 0 0;
   background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
@@ -281,4 +281,44 @@ input[type=submit]:active {
 
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
+}
+
+/**************************/
+/* Group List Display CSS */
+/**************************/
+
+.group-list-item {
+    height: inherit;
+    border: 1px solid grey;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.list-view {
+    height: 20vh;
+    overflow: auto;
+}
+
+.group-name-holder {
+    padding-left: 3vw;
+    padding-top: .5vw;
+    padding-bottom: .5vw;
+
+    border-bottom: 1px solid grey;
+
+}
+
+.no-pad {
+    padding: 0px !important;
+}
+
+.user-amount-holder {
+    padding-top: .5vw;
+    padding-bottom: .5vw;
+
+    text-align: center;
+
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
 }

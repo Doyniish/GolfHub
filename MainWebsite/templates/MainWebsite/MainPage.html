@@ -30,15 +30,34 @@
 				<div class="col-xs-6">
 					<div class="mainpage">
 						<h1>Groups</h1>
-						<div class="content">
-							<p>content from server here</p>
+						{% if has_groups %} <!-- Has groups -->
+						<div class="list-view">
+							<!-- for loop -->
+							<div class="group-list-item">
+								<div class="col-xs-8 no-pad"> <!-- Display name in this column -->
+									<div class="group-name-holder">
+										Group Name
+									</div>
+								</div>
+								<div class="col-xs-4 no-pad"> <!-- Display amount of users in group -->
+									<div class="user-amount-holder">
+										5
+									</div>
+								</div>
+							</div>
+							<!-- / for loop -->
 						</div>
+						{% else %} <!-- Doesn't have groups -->
+							<div class="no-group-display">
+								You have no groups, create one!
+							</div>
+						{% endif %} <!-- /Doesn't have groups -->
 					</div>
 				</div>
 				<div class="col-xs-6">
 					<div class="mainpage">
 						<h1>Events</h1>
-						<div class="content">
+						<div class="list-view">
 							<p>content from server here</p>
 						</div>
 					</div>

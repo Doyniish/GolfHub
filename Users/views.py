@@ -18,7 +18,15 @@ def login_page(request):
             # grab the user's groups and stats
             # {groups, stats}
             user_data = utils.main_page_load(user)
-            return render(request, "MainWebsite/MainPage.html", user_data)
+            has_groups = True
+            # make sure our user has groups
+            # TODO: put this code in
+            # if user_data['groups'] == 'empty':
+            #    has_groups = False
+
+            # create our dictionary for our Main Page render
+            context = {'has_groups': has_groups, 'user_data': user_data}
+            return render(request, "MainWebsite/MainPage.html", context=context)
     else:
         return render(request, "Users/LoginScreen.html")
 
