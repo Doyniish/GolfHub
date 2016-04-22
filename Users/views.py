@@ -82,6 +82,6 @@ def create_new_group(request):
     user_group_list += name + ","
 
     userdata.save()
-
+    #TODO: add group name to each user in the group
     # update the user with a success
     return JsonResponse(res)
