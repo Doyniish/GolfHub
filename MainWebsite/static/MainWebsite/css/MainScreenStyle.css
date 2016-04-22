@@ -353,3 +353,56 @@ input[type=submit]:active {
     border-left: 1px solid grey;
     font-size: 30pt;
 }
+
+
+/**************************/
+/* Event List Display CSS */
+/**************************/
+
+
+
+/* Add Group Area CSS */
+
+.add-event-container {
+    margin: 0 !important;
+    background: #def;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+
+}
+
+#new-event-txt, #event-add {
+    font-size: 15pt;
+    font-weight: bold;
+
+    color: rgba(10,60,150, 0.8);
+    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+}
+
+#new-event-txt {
+    line-height: 300%;
+}
+
+#event-add {
+    text-align: center;
+    border-left: 1px solid grey;
+    font-size: 30pt;
+}
+
+
+/*******************/
+/* Noah's Page CSS */
+/*******************/
+
+.large-padding {
+    width: 100%;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+
+.small-padding {
+    width: 100%;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
