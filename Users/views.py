@@ -63,25 +63,28 @@ def create_new_group(request):
     data = request.POST['json_data']
     name = data['name']
     members = data['members']
-    # create our member csv string for storage
-    members_str = ""
-    for member in members:
-        members_str += member + ","
+    # give each member a notification that they have been requested to join this group
+    if utils.set_group_notification(members, name):
+        # create our member csv string for storage
+        members_str = ""
+        for member in members:
+            members_str += member + ","
 
-    # create our group
-    group = Groups(name=name, members=members_str, owner=request.user.email)
-    # save
-    group.save()
+        # create our group
+        group = Groups(name=name, members=members_str, owner=request.user.email)
+        # save
+        group.save()
+        #update current user's group list
+        userdata = UserData.objects.get(user=request.user)
+        user_group_list = userdata.groups
+        user_group_list += name + ","
 
-    # TODO: check for errors
-    res = {'success': True}
-
-    #update current user's group list
-    userdata = UserData.objects.get(user=request.user)
-    user_group_list = userdata.groups
-    user_group_list += name + ","
-
-    userdata.save()
-    #TODO: add group name to each user in the group
-    # update the user with a success
-    return JsonResponse(res)
+        userdata.save()
+        # TODO: check for errors
+        # update the user with a successful creation
+        res = {'success': True}
+        return JsonResponse(res)
+    else:
+        # update the user with an unsuccessful creation
+        res = {'success': False}
+        return JsonResponse(res)

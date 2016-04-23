@@ -62,3 +62,27 @@ def get_user_stats(user):
             # move to next key
             i += 1
         return stats_dic
+
+
+''' This method is used to set the notification for each user requested
+to join a group by another user '''
+def set_group_notification(user_email_list, group_name):
+    # user list is a of the users' emails
+    user_list = []
+    # get each user and then add it to the list
+    for user_email in user_email_list:
+        user_list.append(User.objects.get(email=user_email))
+
+    # update each userdata object with the notification
+    for user in user_list:
+        userdata = UserData.objects.get(user=user)
+        userdata.has_invite = True
+        userdata.invite_type = False
+        #TODO: Might need to add group_id to this list,
+        # TODO: to find the group after they accept the invite
+        userdata.invite_name = group_name
+        userdata.save()
+    # TODO: Check for errors
+    return True
+
+    # TODO: Send the user an email
