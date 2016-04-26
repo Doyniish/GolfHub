@@ -13,10 +13,10 @@ class Groups(models.Model):
 
 class UserData(models.Model):
     user = models.OneToOneField(User)
-    has_invite = models.BooleanField()
+    has_invite = models.BooleanField(default=False)
     # false: group, # True: event
-    invite_type = models.BooleanField()
-    invite_name = models.CharField(max_length=1000)
+    invite_type = models.BooleanField(default=False)
+    invite_name = models.CharField(max_length=1000, default='empty')
     # every group that the user is apart of (comma separated)
     groups = models.CharField(max_length=4000)
 

@@ -55,15 +55,17 @@ $(function() {
 
 });
 
-
-function sendGroup() {
+/* TODO: add member list as a */
+function sendGroup(group_name) {
     //get data ready for transfer
     post_data = {};
-    post_data[post_key] = chosen_id;
+    //post_data['members'] = member_list;
+    post_data['name'] = group_name;
+    console.log("name: " + group_name);
     $.ajax({
         url : "/user/create-group/", // the endpoint
         type : "POST", // http method
-        data : { json_data: JSON.stringify(post_data) },
+        data : { json_data: JSON.stringify(post_data)},
         // handle a successful response
         success : function(json) {
             //Let the user know that they have created a new group successfully

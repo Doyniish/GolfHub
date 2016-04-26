@@ -1,9 +1,13 @@
+import json
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
+from pygments.lexers import data
+
 from Users import utils
 from Users.models import UserData, Groups
 
@@ -37,13 +41,12 @@ def signup_page(request):
     if request.method == 'POST':
         # create our user
         username = request.POST['username']
-        password = request.POST['password']
         email = request.POST['email']
         first = request.POST['first']
         last = request.POST['last']
         user = User(first_name=first, last_name=last,
                     username=username, email=email,
-                    password=password)
+                    password=request.POST['password'])
         user.save()
         # create our user data entry for our user we just created
         userdata = UserData(user=user)
@@ -55,14 +58,30 @@ def signup_page(request):
         return render(request, "Users/SignupScreen.html")
 
 
+def create_new_group_test(request):
+    json_data = request.POST['json_data']
+    data = json.loads(json_data)
+    name = data["name"]
+    members = "empty"
+    group = Groups(name=name, members=members, owner=request.user.email)
+    group.save()
+    userdata = UserData.objects.get(user=request.user)
+    user_group_list = userdata.groups
+    user_group_list += name + ","
+    userdata.save()
+    res = {'success': True}
+
+    return JsonResponse(res)
+
 '''This method is responsible for handling users creating new groups. '''
 def create_new_group(request):
     # Items Needed: members, creator/owner, group name
 
     # get our json package
-    data = request.POST['json_data']
-    name = data['name']
-    members = data['members']
+    json_data = request.POST['json_data']
+    data = json.loads(json_data)
+    name = data["name"]
+    members = data["members"]
     # give each member a notification that they have been requested to join this group
     if utils.set_group_notification(members, name):
         # create our member csv string for storage
