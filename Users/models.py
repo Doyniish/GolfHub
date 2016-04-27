@@ -9,7 +9,7 @@ class Groups(models.Model):
     name = models.CharField(max_length=50)
     owner = models.CharField(max_length=1000)
     # right now each member is comma separated
-    members = models.CharField(max_length=10000)
+    members = models.ManyToManyField(User, related_name='+')
 
 class UserData(models.Model):
     user = models.OneToOneField(User)
@@ -17,7 +17,7 @@ class UserData(models.Model):
     # false: group, # True: event
     invite_type = models.BooleanField(default=False)
     invite_name = models.CharField(max_length=1000, default='empty')
-    # every group that the user is apart of (comma separated)
-    groups = models.CharField(max_length=4000)
+    # every group that the user is apart of (comma separated) saved by group pk
+    groups = models.ManyToManyField(Groups)
 
 

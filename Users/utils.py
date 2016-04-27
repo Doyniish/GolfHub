@@ -42,6 +42,11 @@ def get_user_golf_groups(user):
         # return the master list with all the groups and users in each group
         return master_list
 
+''' This method return the users of a particular group '''
+def get_group_users(group_id):
+    pass
+
+
 
 ''' This method returns the stats of the current user '''
 def get_user_stats(user):
