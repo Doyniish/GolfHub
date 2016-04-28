@@ -32,6 +32,7 @@ def login_page(request):
 
             # create our dictionary for our Main Page render
             context = {'has_groups': has_groups, 'user_data': user_data}
+
             return render(request, "MainWebsite/MainPage.html", context=context)
     else:
         return render(request, "Users/LoginScreen.html")
