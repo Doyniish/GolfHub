@@ -7,25 +7,29 @@ from django.db import models
 from MainWebsite.models import GolfEvent
 
 
+################
+# Group Models #
+################
+
+
 class Groups(models.Model):
     name = models.CharField(max_length=50)
-    owner = models.CharField(max_length=1000)
+    owner = models.OneToOneField(User, related_name='+')
     members = models.ManyToManyField(User, related_name='+')
 
-class UserData(models.Model):
-    user = models.OneToOneField(User)
 
-    has_invite = models.BooleanField(default=False)
-    # false: group, # True: event
-    invite_type = models.BooleanField(default=False)
-    invite_name = models.CharField(max_length=1000, default='empty')
+###############
+# Stat Models #
+###############
 
-    groups = models.ManyToManyField(Groups)
-    stats = models.OneToOneField(UserStats)
-    events = models.ManyToManyField(GolfEvent)
 
-class UserStats(models.Model):
-    round = models.ManyToManyField(Round)
+class FrontNine(models.Model):
+    hole_scores = models.CharField(max_length=1000)
+    hole_putts = models.CharField(max_length=1000)
+
+class BackNine(models.Model):
+    hole_scores = models.CharField(max_length=1000)
+    hole_putts = models.CharField(max_length=1000)
 
 class Round(models.Model):
     datetime = models.DateTimeField()
@@ -33,24 +37,35 @@ class Round(models.Model):
     # Null if user only played nine holes
     back_nine = models.OneToOneField(BackNine)
 
-class FrontNine(models.Model):
-    hole_one = models.IntegerField()
-    hole_two = models.IntegerField()
-    hole_three = models.IntegerField()
-    hole_four = models.IntegerField()
-    hole_five = models.IntegerField()
-    hole_six = models.IntegerField()
-    hole_seven = models.IntegerField()
-    hole_eight = models.IntegerField()
-    hole_nine = models.IntegerField()
+class UserStats(models.Model):
+    round = models.ManyToManyField(Round)
 
-class BackNine(models.Model):
-    hole_ten = models.IntegerField()
-    hole_eleven = models.IntegerField()
-    hole_twelve = models.IntegerField()
-    hole_thirteen = models.IntegerField()
-    hole_fourteen = models.IntegerField()
-    hole_fifteen = models.IntegerField()
-    hole_sixteen = models.IntegerField()
-    hole_seventeen = models.IntegerField()
-    hole_eighteen = models.IntegerField()
+
+#################
+# Request Model #
+#################
+
+class Requests(models.Model):
+    # false: group, # True: event
+    invite_type = models.BooleanField(default=False)
+    # used to reference back to the object they are being requested to be added to
+    invite_object_id = models.IntegerField()
+    # Name of group or event
+    invite_name = models.CharField(max_length=1000, default='empty')
+
+####################
+# User Data Models #
+####################
+
+
+class UserData(models.Model):
+    # django user model
+    user = models.OneToOneField(User)
+    # group and event requests
+    requests = models.ManyToManyField(Requests)
+    # groups the user is apart of
+    groups = models.ManyToManyField(Groups)
+    # user stats
+    stats = models.OneToOneField(UserStats)
+    # events user is going to
+    events = models.ManyToManyField(GolfEvent)
