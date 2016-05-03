@@ -14,6 +14,7 @@ from MainWebsite.models import GolfEvent
 
 class Groups(models.Model):
     name = models.CharField(max_length=50)
+    size = models.IntegerField()
     owner = models.OneToOneField(User, related_name='+')
     members = models.ManyToManyField(User, related_name='+')
 

@@ -33,54 +33,22 @@
 						{% if has_groups %} <!-- Has groups -->
 						<div class="list-view">
 							<!-- for loop -->
-							<div class="group-list-item">
-								<div class="col-xs-8 no-pad"> <!-- Display name in this column -->
-									<div class="group-name-holder">
-										Group Name
+							{% for group in user_data.groups %}
+								<div class="group-list-item">
+									<div class="col-xs-8 no-pad"> <!-- Display name in this column -->
+										<div class="group-name-holder">
+											<div id="group-expand">
+												{% group.name %}
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 no-pad"> <!-- Display amount of users in group -->
+										<div class="user-amount-holder">
+											{% group.size %}
+										</div>
 									</div>
 								</div>
-								<div class="col-xs-4 no-pad"> <!-- Display amount of users in group -->
-									<div class="user-amount-holder">
-										5
-									</div>
-								</div>
-							</div>
-							<div class="group-list-item">
-								<div class="col-xs-8 no-pad"> <!-- Display name in this column -->
-									<div class="group-name-holder">
-										Group Name 2
-									</div>
-								</div>
-								<div class="col-xs-4 no-pad"> <!-- Display amount of users in group -->
-									<div class="user-amount-holder">
-										6
-									</div>
-								</div>
-							</div>
-							<div class="group-list-item">
-								<div class="col-xs-8 no-pad"> <!-- Display name in this column -->
-									<div class="group-name-holder">
-										Group Name 3
-									</div>
-								</div>
-								<div class="col-xs-4 no-pad"> <!-- Display amount of users in group -->
-									<div class="user-amount-holder">
-										3
-									</div>
-								</div>
-							</div>
-							<div class="group-list-item">
-								<div class="col-xs-8 no-pad"> <!-- Display name in this column -->
-									<div class="group-name-holder">
-										Group Name 4
-									</div>
-								</div>
-								<div class="col-xs-4 no-pad"> <!-- Display amount of users in group -->
-									<div class="user-amount-holder">
-										4
-									</div>
-								</div>
-							</div>
+							{% endfor %}
 							<!-- / for loop -->
 						</div>
 						{% else %} <!-- Doesn't have groups -->
@@ -111,15 +79,20 @@
                                     </div>
                                     <form action="">
                                         <div class="modal-body">
-
-                                            <!-- Create New Group Form Area -->
-                                            <input id="group-name-create" type="text" name="name" placeholder="Group Name"/>
-                                            <select>
-                                                <!-- display friends in this list -->
-                                            </select>
-                                            <!-- /Create New Group Form Area -->
-
-                                        </div>
+											<div class="row">
+												<div class="col-xs-6">
+													<!-- Create New Group Form Area -->
+													<input id="group-name-create" type="text" name="name" placeholder="Group Name"/>
+												</div>
+												<div class="col-xs-6">
+													<select>
+														<!-- display friends in this list -->
+													</select>
+													<input id="group-add-email" type="text" name="email_1" placeholder="Add By Email" />
+												</div>
+											</div>
+                                        	<!-- /Create New Group Form Area -->
+										</div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal" onclick="sendGroup(getElementById('group-name-create').value)">Create</button>
                                         </div>
@@ -191,6 +164,10 @@
 	</section>
 
 
+
+	<!-- Request Popup Code -->
+
+	<!-- /Request Popup Code -->
     <script src="{% static 'MainWebsite/js/jquery-2.2.3.min.js' %}"></script>
     <script src="{% static 'Users/js/new_group.js' %}"></script>
     <script src="{% static 'MainWebsite/js/bootstrap.js' %}"></script>

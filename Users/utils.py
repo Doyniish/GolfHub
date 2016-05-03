@@ -10,8 +10,12 @@ from Users.models import UserData, Groups, UserStats, Requests
 and then return the main page with that data parsed in '''
 def main_page_load(user):
     groups = get_user_golf_groups(user)
+    get_group_user_amount(groups)
     stats = get_user_stats(user)
-    return {'groups': groups, 'stats': stats}
+    requests = get_user_requests(user)
+    return {'groups': groups,
+            'stats': stats,
+            'requests': requests}
 
 
 ''' This method returns the groups the user is apart of '''
@@ -27,9 +31,18 @@ def get_group_users(group):
 
 ''' This method returns a user's stats object '''
 def get_user_stats(user):
-    user_data = UserData(user=user)
-    return user_data.stats
+    user_data = UserData.objects.get(user=user)
+    return user_data.stats.all()
 
+def get_user_requests(user):
+    user_data = UserData.objects.get(user=user)
+    return user_data.requests.all()
+
+''' Calculates the amount of users a group has and saves it to that group '''
+def get_group_user_amount(groups):
+    for group in groups:
+        group.size = len(group.members)
+        group.save()
 
 ###################
 # Request Methods #
@@ -59,7 +72,7 @@ def group_request(list, name, id):
         user_data.requests.add(request)
 
     # TODO: Check for errors
-    return 'success'
+    return {'status':'success'}
 
 def event_request(list, name, request):
     pass
@@ -88,6 +101,7 @@ def accept_group_request(user, request):
 
 def accept_event_request(user, request):
     pass
+
 
 ####################
 # Creating Methods #
